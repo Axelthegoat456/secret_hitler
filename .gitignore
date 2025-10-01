@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# But don't ignore secret_hitler.py
+!secret_hitler.py
+
+# Don't ignore the .gitignore file itself
+!.gitignore
