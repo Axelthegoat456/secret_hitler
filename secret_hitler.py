@@ -30,7 +30,7 @@ def card_counting(number_fascist_cards, number_liberal_cards):
     if number_liberal_cards <= 0:
         print("Someone has lied about the liberal cards.")
     return number_fascist_cards, number_liberal_cards
-def chacellor_move(fascist_num, liberal_num):
+def chancellor_move(fascist_num, liberal_num):
     fascist_yes =input("Did the chancellor lay a fascist card? (y/n) ")
     if fascist_yes == "y":
         fascist_num +=1
@@ -118,19 +118,24 @@ if __name__ == "__main__":
             print("Lie a lot but still don't make it obvious.")
             print("Or try to gain trust and manipulate liberals.")
         elif president == "y" and hitler:
+            print(f"Prime suspects: {prime_suspects}")
             print("Give the chancellor to a person unsuspecting.")
             print("If the chancellor is a suspect, frame them.")
             print("Or play safe and stay lowkey and gain trust.")
             print("Only lie in extreme cases.")
         elif president == "y" and liberal:
+            print(f"Prime suspects: {prime_suspects}")
             print("Give the chancellor to only trustworthy persons.")
             print("Always tell the truth and support the liberal cause.")
         elif president == "y" and fascist:
+            print(f"Prime suspects: {prime_suspects}")
             print("Give the chancellor to a liberal or hitler if it doesn't cause suspicion.")
             print("Frame a liberal if they are suspicious.")
             print("Or play unlucky and say three fascist cards.")
             print("Lie a lot and play aggresive but not too obvious.")
         elif chancellor == "n" and liberal and president == "n":
+            print(f"Prime suspects: {prime_suspects}")
             print("Think critically and don't trust anyone who isn't absolutely trustworthy.")
+            print("Vote no if the president or chancellor is a suspect.")
         number_fascist_cards, number_liberal_cards = card_counting(number_fascist_cards, number_liberal_cards)
-        fascist_num, liberal_num = chacellor_move(fascist_num, liberal_num)  
+        fascist_num, liberal_num = chancellor_move(fascist_num, liberal_num)  
