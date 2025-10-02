@@ -1,5 +1,5 @@
 import os
-from liberal_play import liberal_play
+from notes_strategy import notes_strategy
 def hitler_strategy():
     os.system("clear")
     print("Welcome to Hitler's game!")
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     number_fascist_cards = 11
     number_liberal_cards = 6
     while True:
-        player_notes, recomendation =liberal_play(player_notes)
+        player_notes, recomendation = notes_strategy(player_notes)
         liberal_recomendation = recomendation[0]
         fascist_recomendation = recomendation[1]
         board(fascist_num, liberal_num)
