@@ -1,6 +1,6 @@
 def liberal_play(player_notes):
     for key, value in player_notes.items():
-        print("Notes on " + key +": " + ". ".join(value))
+        print("\nNotes on " + key +": " + ". ".join(value))
         print("1. Remove Note or Action")
         print("2. Add Action")
         print("3. Add Note")
