@@ -1,4 +1,5 @@
 import os
+from liberal_play import liberal_play
 def hitler_strategy():
     os.system("clear")
     print("Welcome to Hitler's game!")
@@ -42,19 +43,6 @@ def board(fascist_num, liberal_num):
     board_liberal = (["L "] * liberal_num) + (["_ "] * (5 - liberal_num))
     print("".join(board_fascist))
     print("".join(board_liberal))
-def prime_suspects_list(prime_suspects):
-    print("Prime suspects: ")
-    for suspect in prime_suspects:
-        print(suspect)
-    suspect_plus = input("Do you want to add a suspect or a frameable person? (y/n)")
-    if suspect_plus == "y":
-        suspect = input("What is the name of the suspect or frameable person? ")
-        prime_suspects.append(suspect)
-    suspect_remove = input("Do you want to remove a suspect or frameable person? (y/n)")
-    if suspect_remove == "y":
-        suspect = input("What is the name of the suspect or frameable person? ")
-        prime_suspects.remove(suspect)
-    return prime_suspects
 if __name__ == "__main__":
     number_fascist_cards = 11
     number_liberal_cards = 6
@@ -94,10 +82,16 @@ if __name__ == "__main__":
         liberal_strategy()
     fascist_num = 0
     liberal_num = 0
-    prime_suspects = []
+    players_string = input("Please state all players names(Exclude yourself) in this format: player1, player2, and so on. ")
+    players_list = players_string.split(", ")
+    player_notes = {}
+    for player in players_list:
+        player_notes[player] = []
+    number_fascist_cards = 11
+    number_liberal_cards = 6
     while True:
+        player_notes = liberal_play(player_notes)
         board(fascist_num, liberal_num)
-        prime_suspects = prime_suspects_list(prime_suspects)
         yes_no = input("Have you shuffled the cards? (y/n) ")
         if yes_no == "y":
             number_fascist_cards = 11
@@ -113,29 +107,31 @@ if __name__ == "__main__":
                 print("If the president is a suspect, lie.")
                 print("If the president is a fellow fascist, either frame them to gain trust or help the fascists.")
         elif chancellor == "y" and liberal:
+            print(f"Notes: {player_notes}")
             print("Play truthful and don't let the fascists frame you.")
         elif chancellor == "y" and fascist:
+            print(f"Notes: {player_notes}")
             print("Lie a lot but still don't make it obvious.")
             print("Or try to gain trust and manipulate liberals.")
         elif president == "y" and hitler:
-            print(f"Prime suspects: {prime_suspects}")
+            print(f"Notes: {player_notes}")
             print("Give the chancellor to a person unsuspecting.")
             print("If the chancellor is a suspect, frame them.")
             print("Or play safe and stay lowkey and gain trust.")
             print("Only lie in extreme cases.")
         elif president == "y" and liberal:
-            print(f"Prime suspects: {prime_suspects}")
+            print(f"Notes: {player_notes}")
             print("Give the chancellor to only trustworthy persons.")
             print("Always tell the truth and support the liberal cause.")
         elif president == "y" and fascist:
-            print(f"Prime suspects: {prime_suspects}")
+            print(f"Notes: {player_notes}")
             print("Give the chancellor to a liberal or hitler if it doesn't cause suspicion.")
             print("Frame a liberal if they are suspicious.")
             print("Or play unlucky and say three fascist cards.")
             print("Lie a lot and play aggresive but not too obvious.")
         elif chancellor == "n" and liberal and president == "n":
-            print(f"Prime suspects: {prime_suspects}")
+            print(f"Notes: {player_notes}")
             print("Think critically and don't trust anyone who isn't absolutely trustworthy.")
             print("Vote no if the president or chancellor is a suspect.")
         number_fascist_cards, number_liberal_cards = card_counting(number_fascist_cards, number_liberal_cards)
-        fascist_num, liberal_num = chancellor_move(fascist_num, liberal_num)  
+        fascist_num, liberal_num = chancellor_move(fascist_num, liberal_num)
