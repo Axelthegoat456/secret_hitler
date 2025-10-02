@@ -90,7 +90,9 @@ if __name__ == "__main__":
     number_fascist_cards = 11
     number_liberal_cards = 6
     while True:
-        player_notes = liberal_play(player_notes)
+        player_notes, recomendation =liberal_play(player_notes)
+        liberal_recomendation = recomendation[0]
+        fascist_recomendation = recomendation[1]
         board(fascist_num, liberal_num)
         yes_no = input("Have you shuffled the cards? (y/n) ")
         if yes_no == "y":
@@ -99,6 +101,9 @@ if __name__ == "__main__":
         chancellor = input("Are you chancellor? (y/n) ")
         president = input("Are you president? (y/n) ") 
         if chancellor == "y" and hitler:
+            print(f"Notes: {player_notes}")
+            print(f"Most liberal: {liberal_recomendation}")
+            print(f"Most fascist: {fascist_recomendation}")
             if fascist_num >= 3:
                 print("Fascist win!")
                 break
@@ -108,30 +113,48 @@ if __name__ == "__main__":
                 print("If the president is a fellow fascist, either frame them to gain trust or help the fascists.")
         elif chancellor == "y" and liberal:
             print(f"Notes: {player_notes}")
+            print(f"Most liberal: {liberal_recomendation}")
+            print(f"Most fascist: {fascist_recomendation}")
             print("Play truthful and don't let the fascists frame you.")
         elif chancellor == "y" and fascist:
             print(f"Notes: {player_notes}")
+            print(f"Most liberal: {liberal_recomendation}")
+            print(f"Most fascist: {fascist_recomendation}")
             print("Lie a lot but still don't make it obvious.")
             print("Or try to gain trust and manipulate liberals.")
         elif president == "y" and hitler:
             print(f"Notes: {player_notes}")
+            print(f"Most liberal: {liberal_recomendation}")
+            print(f"Most fascist: {fascist_recomendation}")
             print("Give the chancellor to a person unsuspecting.")
             print("If the chancellor is a suspect, frame them.")
             print("Or play safe and stay lowkey and gain trust.")
             print("Only lie in extreme cases.")
         elif president == "y" and liberal:
             print(f"Notes: {player_notes}")
+            print(f"Most liberal: {liberal_recomendation}")
+            print(f"Most fascist: {fascist_recomendation}")
             print("Give the chancellor to only trustworthy persons.")
             print("Always tell the truth and support the liberal cause.")
         elif president == "y" and fascist:
             print(f"Notes: {player_notes}")
+            print(f"Most liberal: {liberal_recomendation}")
+            print(f"Most fascist: {fascist_recomendation}")
             print("Give the chancellor to a liberal or hitler if it doesn't cause suspicion.")
             print("Frame a liberal if they are suspicious.")
             print("Or play unlucky and say three fascist cards.")
             print("Lie a lot and play aggresive but not too obvious.")
         elif chancellor == "n" and liberal and president == "n":
             print(f"Notes: {player_notes}")
+            print(f"Most liberal: {liberal_recomendation}")
+            print(f"Most fascist: {fascist_recomendation}")
             print("Think critically and don't trust anyone who isn't absolutely trustworthy.")
             print("Vote no if the president or chancellor is a suspect.")
         number_fascist_cards, number_liberal_cards = card_counting(number_fascist_cards, number_liberal_cards)
         fascist_num, liberal_num = chancellor_move(fascist_num, liberal_num)
+        if fascist_num > 5:
+            print("Fascist win!")
+            break
+        if liberal_num > 5:
+            print("Liberal win!")
+            break
