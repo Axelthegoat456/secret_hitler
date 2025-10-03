@@ -1,4 +1,4 @@
-def liberal_play(player_notes):
+def notes_strategy(player_notes):
     for key, value in player_notes.items():
         print("\nNotes on " + key +": " + ". ".join(value))
         print("1. Remove Note or Action")

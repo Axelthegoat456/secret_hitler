@@ -1,5 +1,6 @@
 import os
 from notes_strategy import notes_strategy
+import notes_strategy
 def hitler_strategy():
     os.system("clear")
     print("Welcome to Hitler's game!")
