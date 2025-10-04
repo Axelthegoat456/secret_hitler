@@ -1,6 +1,5 @@
 import os
 from notes_strategy import notes_strategy
-import notes_strategy
 def hitler_strategy():
     os.system("clear")
     print("Welcome to Hitler's game!")
@@ -102,8 +101,8 @@ if __name__ == "__main__":
         board(fascist_num, liberal_num)
         yes_no = input("Have you shuffled the cards? (y/n) ")
         if yes_no == "y":
-            number_fascist_cards = 11
-            number_liberal_cards = 6  
+            number_fascist_cards = 11-fascist_num
+            number_liberal_cards = 6-liberal_num  
         chancellor = input("Are you chancellor? (y/n) ")
         president = input("Are you president? (y/n) ") 
         if chancellor == "y" and hitler:
